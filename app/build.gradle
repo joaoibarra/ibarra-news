@@ -43,6 +43,7 @@ ext{
     okhttp3 = '4.1.1'
     gson = '2.8.5'
     room = '2.2.0-rc01'
+    paging = '2.1.0'
     junit = '4.12'
     espresso = '3.2.0'
     test_runner = '1.2.0'
@@ -69,6 +70,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3"
     implementation "com.squareup.okhttp3:okhttp:$okhttp3"
 
+    implementation "androidx.paging:paging-runtime-ktx:$paging"
     implementation "androidx.room:room-runtime:$room"
     kapt "androidx.room:room-compiler:$room"
 

@@ -2,6 +2,7 @@ package com.ibarra.news
 
 import android.app.Application
 import com.ibarra.news.di.NetworkModule
+import com.ibarra.news.di.RoomModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -11,7 +12,7 @@ class IbarraNewsApp : Application(){
         super.onCreate()
         startKoin {
             androidContext(this@IbarraNewsApp)
-            modules(listOf(NetworkModule))
+            modules(listOf(NetworkModule, RoomModule))
         }
 
     }
