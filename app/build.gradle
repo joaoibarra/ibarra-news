@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -15,6 +17,11 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    dataBinding {
+        enabled = true
+    }
+
     buildTypes {
         debug {
             buildConfigField "String", "BASE_URL", '"https://newsapi.org"'
@@ -35,6 +42,7 @@ ext{
     retrofit = '2.6.2'
     okhttp3 = '4.1.1'
     gson = '2.8.5'
+    room = '2.2.0-rc01'
     junit = '4.12'
     espresso = '3.2.0'
     test_runner = '1.2.0'
@@ -60,6 +68,9 @@ dependencies {
 
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3"
     implementation "com.squareup.okhttp3:okhttp:$okhttp3"
+
+    implementation "androidx.room:room-runtime:$room"
+    kapt "androidx.room:room-compiler:$room"
 
     testImplementation "junit:junit:$junit"
     androidTestImplementation "androidx.test:runner:$test_runner"
