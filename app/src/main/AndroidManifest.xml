@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:name=".IbarraNewsApp"
         android:theme="@style/AppTheme">
-        <activity android:name=".SourceNewsActivity">
+        <activity android:name=".ui.source.SourceNewsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
