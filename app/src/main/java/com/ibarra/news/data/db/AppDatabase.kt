@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.ibarra.news.data.db.dao.SourceDao
 import com.ibarra.news.data.db.entity.Source
 
-@Database(entities = arrayOf(Source::class), version = AppDatabase.DB_VERSION)
+@Database(entities = arrayOf(Source::class), version = AppDatabase.DB_VERSION, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun getSourceDao(): SourceDao
 
