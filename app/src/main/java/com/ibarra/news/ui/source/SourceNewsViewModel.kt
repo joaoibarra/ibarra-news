@@ -1,6 +1,7 @@
 package com.ibarra.news.ui.source
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
@@ -15,6 +16,7 @@ class SourceNewsViewModel (private val api: IbarraNewsAPi, private val dao: Sour
     private val disposables: CompositeDisposable = CompositeDisposable()
 
     val items: LiveData<PagedList<Source>> = LivePagedListBuilder(dao.findAll(),  20).build()
+    val activityToStart = MutableLiveData<String>()
 
     init {
         loadSources()
@@ -28,12 +30,16 @@ class SourceNewsViewModel (private val api: IbarraNewsAPi, private val dao: Sour
         addToDisposable(api.getSources()
             .subscribeOn(Schedulers.io())
             .subscribe({
-                //dao.insertAll(Source.toList(it.sources))
+                dao.insertAll(Source.toList(it.sources))
             }, {
 
             })
 
         )
+    }
+
+    fun onClick(sourceId: String) {
+        activityToStart.postValue(sourceId)
     }
 
     override fun onCleared() {

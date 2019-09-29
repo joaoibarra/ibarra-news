@@ -15,7 +15,7 @@ import com.ibarra.news.data.db.entity.Source
 import com.ibarra.news.databinding.ItemSourceBinding
 import com.ibarra.news.ui.BindingViewHolder
 
-class SourceNewsAdapter (private val viewModel: SourceNewsViewModel) :
+class SourceNewsAdapter (private val vm: SourceNewsViewModel) :
     PagedListAdapter<Source, SourceNewsAdapter.SourceViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SourceViewHolder {
@@ -32,7 +32,7 @@ class SourceNewsAdapter (private val viewModel: SourceNewsViewModel) :
         getItem(position)?.let { source ->
             holder.binding?.apply{
                 item = source
-                viewModel = viewModel
+                viewModel = vm
                 ivNewsImage.setImageResource(getRandomPlaceholder())
             }
         }
