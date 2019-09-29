@@ -33,17 +33,14 @@ class SourceNewsAdapter (private val viewModel: SourceNewsViewModel) :
             holder.binding?.apply{
                 item = source
                 viewModel = viewModel
-                loadImage(ivNewsImage)
+                ivNewsImage.setImageResource(getRandomPlaceholder())
             }
         }
     }
 
-    private fun loadImage(view: ImageView) {
-        Glide.with(view.context)
-            .load(BuildConfig.IMAGE_URL)
-            .diskCacheStrategy(DiskCacheStrategy.NONE)
-            .skipMemoryCache(true)
-            .into(view)
+    private fun getRandomPlaceholder(): Int{
+        val list = listOf(R.drawable.ic_004_newspaper, R.drawable.ic_005_laptop, R.drawable.ic_012_tablet, R.drawable.ic_024_worldwide_1)
+        return list.random()
     }
 
     class SourceViewHolder(view: View) : BindingViewHolder<ItemSourceBinding>(view)

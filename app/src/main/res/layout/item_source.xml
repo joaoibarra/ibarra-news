@@ -8,42 +8,75 @@
         <variable name="viewModel" type="com.ibarra.news.ui.source.SourceNewsViewModel"/>
     </data>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardUseCompatPadding="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp">
+        android:layout_marginTop="@dimen/margin_p"
+        android:layout_marginEnd="@dimen/margin_p"
+        android:layout_marginStart="@dimen/margin_p">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/iv_news_image"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="@dimen/margin_m"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:background="@tools:sample/backgrounds/scenic"
-                tools:visibility="visible" />
+                tools:background="@tools:sample/avatars" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.25" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/source_name"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_margin="@dimen/margin_m"
+                android:gravity="start|center_vertical"
                 android:text="@{item.name}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="LOL"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/source_url"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_m"
+                android:gravity="start|center_vertical"
+                android:text="@{item.url}"
+                app:layout_constraintTop_toBottomOf="@+id/source_name"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="LOL"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/source_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_m"
+                android:gravity="start|center_vertical"
+                android:text="@{item.description}"
                 app:layout_constraintTop_toBottomOf="@+id/iv_news_image"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 tools:text="LOL"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </layout>
