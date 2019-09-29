@@ -3,8 +3,13 @@ package com.ibarra.news.ui.source
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.ibarra.news.BuildConfig
 import com.ibarra.news.R
 import com.ibarra.news.data.db.entity.Source
 import com.ibarra.news.databinding.ItemSourceBinding
@@ -24,13 +29,25 @@ class SourceNewsAdapter (private val viewModel: SourceNewsViewModel) :
     }
 
     override fun onBindViewHolder(holder: SourceViewHolder, position: Int) {
-        getItem(position)?.run {
-            holder.binding.item = this
-            holder.binding.viewModel = viewModel
+        getItem(position)?.let { source ->
+            holder.binding?.apply{
+                item = source
+                viewModel = viewModel
+                loadImage(ivNewsImage)
+            }
         }
     }
 
+    private fun loadImage(view: ImageView) {
+        Glide.with(view.context)
+            .load(BuildConfig.IMAGE_URL)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .skipMemoryCache(true)
+            .into(view)
+    }
+
     class SourceViewHolder(view: View) : BindingViewHolder<ItemSourceBinding>(view)
+
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Source>() {

@@ -14,4 +14,7 @@ interface SourceDao {
 
     @Delete
     fun delete(source: Source)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(sources: List<Source>?)
 }

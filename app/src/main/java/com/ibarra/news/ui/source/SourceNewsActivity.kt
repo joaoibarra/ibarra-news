@@ -15,5 +15,6 @@ class SourceNewsActivity : AppCompatActivity() {
 
         val binding: ActivitySourceNewsBinding = DataBindingUtil.setContentView(this@SourceNewsActivity, R.layout.activity_source_news)
         binding.viewModel = getViewModel()
+        binding.lifecycleOwner = this
     }
 }

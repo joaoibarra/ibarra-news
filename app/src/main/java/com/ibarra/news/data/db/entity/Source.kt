@@ -11,8 +11,7 @@ import java.util.*
 @Entity(tableName = "sources")
 @TypeConverters(DateConverter::class)
 data class Source(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    @ColumnInfo(name = "id_name") val idName: String,
+    @PrimaryKey(autoGenerate = false) val id: String,
     @ColumnInfo(name = "name") val name: String?,
     @ColumnInfo(name = "description") val description: String?,
     @ColumnInfo(name = "url") val url: String?,
@@ -24,7 +23,7 @@ data class Source(
     companion object {
         fun to(repository: SourceRepository): Source {
             return Source(
-                idName = repository.idName,
+                id = repository.idName,
                 name = repository.name,
                 description = repository.description,
                 url = repository.url,
@@ -33,6 +32,10 @@ data class Source(
                 country = repository.country,
                 created = Date()
             )
+        }
+
+        fun toList(repositories: List<SourceRepository>?): List<Source>? {
+            return repositories?.map { to(it) }
         }
     }
 }

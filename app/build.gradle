@@ -25,12 +25,15 @@ android {
     buildTypes {
         debug {
             buildConfigField "String", "BASE_URL", '"https://newsapi.org"'
+            buildConfigField "String", "IMAGE_URL", '"https://picsum.photos/536/354"'
             buildConfigField "String", "API_KEY", '"07c916a66c954426b06d91bffda122c9"'
         }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", '"https://newsapi.org"'
+            buildConfigField "String", "IMAGE_URL", '"https://picsum.photos/536/354"'
             buildConfigField "String", "API_KEY", '"07c916a66c954426b06d91bffda122c9"'
         }
     }
@@ -46,6 +49,7 @@ ext{
     gson = '2.8.5'
     room = '2.2.0-rc01'
     archLifecycleVersion = '2.1.0'
+    glide = '4.10.0'
     junit = '4.12'
     espresso = '3.2.0'
     test_runner = '1.2.0'
@@ -76,6 +80,9 @@ dependencies {
 
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3"
     implementation "com.squareup.okhttp3:okhttp:$okhttp3"
+
+    implementation "com.github.bumptech.glide:glide:$glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide"
 
     testImplementation "junit:junit:$junit"
     androidTestImplementation "androidx.test:runner:$test_runner"
