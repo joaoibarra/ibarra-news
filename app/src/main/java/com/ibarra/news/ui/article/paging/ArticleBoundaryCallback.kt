@@ -1,9 +1,7 @@
 package com.ibarra.news.ui.article.paging
 
 import androidx.paging.PagedList
-import com.ibarra.news.data.db.dao.ArticleDao
 import com.ibarra.news.data.db.entity.Article
-import com.ibarra.news.data.remote.IbarraNewsAPi
 import com.ibarra.news.ui.article.ArticleViewModel
 
 class ArticleBoundaryCallback (

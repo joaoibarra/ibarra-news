@@ -8,6 +8,7 @@ import androidx.paging.PagedList
 import com.ibarra.news.data.db.dao.SourceDao
 import com.ibarra.news.data.db.entity.Source
 import com.ibarra.news.data.remote.IbarraNewsAPi
+import com.ibarra.news.ui.source.paging.SourceBoundaryCallback
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -15,11 +16,16 @@ import io.reactivex.schedulers.Schedulers
 class SourceNewsViewModel (private val api: IbarraNewsAPi, private val dao: SourceDao) : ViewModel() {
     private val disposables: CompositeDisposable = CompositeDisposable()
 
-    val items: LiveData<PagedList<Source>> = LivePagedListBuilder(dao.findAll(),  20).build()
+    val items: LiveData<PagedList<Source>> = LivePagedListBuilder(dao.findAll(),  20).setBoundaryCallback(SourceBoundaryCallback(this)).build()
     val activityToStart = MutableLiveData<String>()
+    val endOfList = MutableLiveData<Boolean>()
 
     init {
         loadSources()
+    }
+
+    companion object {
+        const val SOURCE = "SOURCE"
     }
 
     private fun addToDisposable(disposable: Disposable) {
@@ -46,4 +52,9 @@ class SourceNewsViewModel (private val api: IbarraNewsAPi, private val dao: Sour
         disposables.clear()
         super.onCleared()
     }
+
+    fun endList() {
+        endOfList.postValue(true)
+    }
+
 }

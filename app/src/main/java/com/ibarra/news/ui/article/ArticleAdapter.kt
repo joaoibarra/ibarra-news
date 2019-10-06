@@ -8,7 +8,7 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.ibarra.news.BuildConfig
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.ibarra.news.R
 import com.ibarra.news.data.db.entity.Article
 import com.ibarra.news.databinding.ItemArticleBinding
@@ -41,6 +41,7 @@ class ArticleAdapter (private val vm: ArticleViewModel) :
         Glide.with(view.context)
             .load(url)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .transition(DrawableTransitionOptions.withCrossFade())
             .into(view)
     }
 

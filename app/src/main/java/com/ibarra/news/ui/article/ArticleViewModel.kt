@@ -1,10 +1,7 @@
 package com.ibarra.news.ui.article
 
-import android.content.Intent
-import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
@@ -17,24 +14,23 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class ArticleViewModel (private val api: IbarraNewsAPi, private val dao: ArticleDao) : ViewModel() {
+class ArticleViewModel (private val api: IbarraNewsAPi, private val dao: ArticleDao, private val source: String) : ViewModel() {
     private val disposables: CompositeDisposable = CompositeDisposable()
-
-//    val items: LiveData<PagedList<Article>> = LivePagedListBuilder(dao.findAll(),  20).build()
     var items: LiveData<PagedList<Article>>
     val pageToStart = MutableLiveData<String>()
-    val sourceId = MutableLiveData<String>()
+    val endOfList = MutableLiveData<Boolean>()
+
     private var page = 1
 
     init {
-        val factory: DataSource.Factory<Int, Article> = dao.findAll()
+        val factory: DataSource.Factory<Int, Article> = dao.findBySourceId(source)
 
         val pagedListBuilder: LivePagedListBuilder<Int, Article>  = LivePagedListBuilder<Int, Article>(factory,
             20)
         items = pagedListBuilder
             .setBoundaryCallback(ArticleBoundaryCallback(this))
             .build()
-
+        loadArticles()
     }
 
     private fun addToDisposable(disposable: Disposable) {
@@ -42,23 +38,23 @@ class ArticleViewModel (private val api: IbarraNewsAPi, private val dao: Article
     }
 
     fun loadArticles() {
-        val lol = sourceId.getValue().toString()
-        if(lol != null) {
-            addToDisposable(
-                api.getEverything(lol, page)
-                    .subscribeOn(Schedulers.io())
-                    .subscribe({
-                        dao.insertAll(Article.toList(it.articles))
-                        page++
-                    }, {
+        addToDisposable(
+            api.getEverything(source, page)
+                .subscribeOn(Schedulers.io())
+                .subscribe({
+                    if(it.idName==null) {
+                        it.idName = source
+                    }
+                    dao.insertAll(Article.toList(it.articles))
+                    page++
+                }, {
 
-                    })
-            )
-        }
+                })
+        )
     }
 
     fun endList() {
-
+        endOfList.postValue(true)
     }
 
     fun onClick(url: String) {

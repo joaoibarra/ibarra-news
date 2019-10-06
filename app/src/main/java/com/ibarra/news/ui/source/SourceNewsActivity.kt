@@ -1,16 +1,19 @@
 package com.ibarra.news.ui.source
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import com.ibarra.news.R
 import com.ibarra.news.databinding.ActivitySourceNewsBinding
 import com.ibarra.news.ui.article.ArticleActivity
+import kotlinx.android.synthetic.main.activity_source_news.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
+import org.koin.core.KoinComponent
 
-class SourceNewsActivity : AppCompatActivity() {
+class SourceNewsActivity : AppCompatActivity(), KoinComponent {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,10 +26,14 @@ class SourceNewsActivity : AppCompatActivity() {
 
         sourceViewModel.activityToStart.observe(this, Observer { value ->
             val intent = Intent(this, ArticleActivity::class.java)
-            val bundle = Bundle()
-            bundle.putString("SOURCE", value)
-            intent.putExtras(bundle)
+            getKoin().setProperty(SourceNewsViewModel.SOURCE, value)
             startActivity(intent)
+        })
+
+        sourceViewModel.endOfList.observe(this, Observer { value ->
+            if(value) {
+                Snackbar.make(container, R.string.no_more_data, Snackbar.LENGTH_LONG).show()
+            }
         })
     }
 }
