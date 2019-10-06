@@ -17,7 +17,12 @@ jobs:
       run: ./gradlew lint
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Unit Test
+      run: ./gradlew testDebugUnitTest
+      continue-on-error: true 
+    - name: Report
+      uses: asadmansr/android-test-report-action@master
     - name: Start Emulator
-      uses: vgaidarji/android-github-actions/emulator@v1.0.0
-    - name: Run UI Tests 
+      uses: actions/setup-java@v1, vgaidarji/android-github-actions/emulator@v1.0.0
+    - name: Run UI Tests        
       run: ./gradlew connectedAndroidTest
