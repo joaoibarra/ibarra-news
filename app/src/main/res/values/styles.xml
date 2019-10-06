@@ -8,4 +8,19 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TextListTitle" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/listTitle</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextListDescription" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/listDescription</item>
+    </style>
+
+    <style name="TextListDate" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/listDate</item>
+        <item name="android:textColor">@color/listDate</item>
+    </style>
+
 </resources>

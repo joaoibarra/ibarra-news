@@ -13,9 +13,9 @@
         android:layout_height="wrap_content"
         app:cardUseCompatPadding="true"
         android:onClick="@{() -> viewModel  != null ? viewModel.onClick(item.id) : void }"
-        android:layout_marginTop="@dimen/margin_p"
-        android:layout_marginEnd="@dimen/margin_p"
-        android:layout_marginStart="@dimen/margin_p">
+        android:layout_marginTop="@dimen/margin_s"
+        android:layout_marginEnd="@dimen/margin_s"
+        android:layout_marginStart="@dimen/margin_s">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -40,6 +40,7 @@
                 app:layout_constraintGuide_percent="0.25" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextListTitle"
                 android:id="@+id/source_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -55,7 +56,10 @@
                 android:id="@+id/source_url"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_m"
+                android:layout_marginTop="@dimen/margin_s"
+                android:layout_marginStart="@dimen/margin_m"
+                android:layout_marginEnd="@dimen/margin_m"
+                android:layout_marginBottom="@dimen/margin_m"
                 android:gravity="start|center_vertical"
                 android:text="@{item.url}"
                 app:layout_constraintTop_toBottomOf="@+id/source_name"
@@ -64,6 +68,7 @@
                 tools:text="LOL"/>
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextListDescription"
                 android:id="@+id/source_description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

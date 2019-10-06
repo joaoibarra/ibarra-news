@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#270038</color>
     <color name="colorPrimaryLight">#804d91</color>
     <color name="colorAccent">#522263</color>
+    <color name="listBackground">#F5F5F5</color>
+    <color name="listDate">#9E9E9E</color>
 </resources>
