@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import com.ibarra.news.R
 import com.ibarra.news.data.db.dao.SourceDao
 import com.ibarra.news.data.db.entity.Source
 import com.ibarra.news.data.remote.IbarraNewsAPi
@@ -42,6 +43,11 @@ class SourceNewsViewModel (private val api: IbarraNewsAPi, private val dao: Sour
             })
 
         )
+    }
+
+    fun getRandomPlaceholder(): Int{
+        val list = listOf(R.drawable.ic_004_newspaper, R.drawable.ic_005_laptop, R.drawable.ic_012_tablet, R.drawable.ic_024_worldwide_1)
+        return list.random()
     }
 
     fun onClick(sourceId: String) {

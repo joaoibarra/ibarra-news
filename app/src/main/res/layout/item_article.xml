@@ -4,6 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View"/>
+        <import type="android.text.TextUtils"/>
         <variable name="item" type="com.ibarra.news.data.db.entity.Article"/>
         <variable name="viewModel" type="com.ibarra.news.ui.article.ArticleViewModel"/>
     </data>
@@ -63,6 +65,7 @@
                 android:layout_marginBottom="@dimen/margin_m"
                 android:gravity="start|center_vertical"
                 android:text="@{item.author}"
+                android:visibility="@{TextUtils.isEmpty(item.author) ? View.GONE : View.VISIBLE}"
                 app:layout_constraintTop_toBottomOf="@+id/article_name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -79,6 +82,7 @@
                 android:layout_marginBottom="@dimen/margin_m"
                 android:gravity="start|center_vertical"
                 android:text="@{item.description}"
+                android:visibility="@{TextUtils.isEmpty(item.description) ? View.GONE : View.VISIBLE}"
                 app:layout_constraintTop_toBottomOf="@+id/article_author"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

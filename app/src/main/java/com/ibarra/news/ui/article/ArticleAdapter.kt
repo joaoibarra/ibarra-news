@@ -47,7 +47,6 @@ class ArticleAdapter (private val vm: ArticleViewModel) :
 
     class ArticleViewHolder(view: View) : BindingViewHolder<ItemArticleBinding>(view)
 
-
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Article>() {
             override fun areItemsTheSame(oldItem: Article, newItem: Article) = oldItem.url == newItem.url

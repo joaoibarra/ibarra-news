@@ -27,6 +27,7 @@
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 android:layout_margin="@dimen/margin_m"
+                app:sourceImage="@{viewModel.getRandomPlaceholder()}"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
