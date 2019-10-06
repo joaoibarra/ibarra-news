@@ -49,7 +49,9 @@ data class Article(
     }
 
     fun formatDate(): String? {
-        val format = SimpleDateFormat("dd/MM/yyy hh:mm")
-        return format.format(publishedAt).toString()
+        return publishedAt?.let{
+            val format = SimpleDateFormat("dd/MM/yyy hh:mm", Locale.getDefault())
+            format.format(it).toString()
+        }?:""
     }
 }
