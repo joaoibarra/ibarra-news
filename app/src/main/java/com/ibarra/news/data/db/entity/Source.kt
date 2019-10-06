@@ -21,7 +21,7 @@ data class Source(
     @ColumnInfo(name = "created") val created: Date
 ){
     companion object {
-        fun to(repository: SourceRepository): Source {
+        infix fun to(repository: SourceRepository): Source {
             return Source(
                 id = repository.idName,
                 name = repository.name,

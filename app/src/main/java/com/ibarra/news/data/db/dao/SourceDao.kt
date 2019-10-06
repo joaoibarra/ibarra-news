@@ -9,6 +9,9 @@ interface SourceDao {
     @Query("SELECT * FROM sources ORDER BY created ASC")
     fun findAll(): DataSource.Factory<Int, Source>
 
+    @Query("SELECT * FROM sources WHERE id LIKE :sourceId ORDER BY created ASC")
+    fun findById(sourceId: String): Source
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(source: Source)
 

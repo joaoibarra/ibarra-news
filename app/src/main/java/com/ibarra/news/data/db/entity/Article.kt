@@ -1,29 +1,37 @@
 package com.ibarra.news.data.db.entity
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
+import androidx.room.*
 import com.ibarra.news.data.db.converter.DateConverter
 import com.ibarra.news.data.remote.domain.ArticleRepository
-import com.ibarra.news.data.remote.domain.ArticleSourceRepository
+import java.text.SimpleDateFormat
 import java.util.*
 
-@Entity(tableName = "articles")
+@Entity(
+    tableName = "articles",
+    foreignKeys = arrayOf(ForeignKey(
+        entity = Source::class,
+        parentColumns = arrayOf("id"),
+        childColumns = arrayOf("sourceId"))
+    ),
+    indices = arrayOf(Index(value = ["sourceId", "url"], unique = true))
+)
+
 @TypeConverters(DateConverter::class)
-data class Article (
-    @PrimaryKey(autoGenerate = false)  val url: String,
+data class Article(
+    @PrimaryKey(autoGenerate = false) val url: String,
+    @ColumnInfo(name = "sourceId") val sourceId: String,
     @ColumnInfo(name = "author") val author: String?,
     @ColumnInfo(name = "title") val title: String?,
     @ColumnInfo(name = "description") val description: String?,
     @ColumnInfo(name = "urlToImage") val urlToImage: String?,
-    @ColumnInfo(name = "publishedAt") val publishedAt: String?,
+    @ColumnInfo(name = "publishedAt") val publishedAt: Date?,
     @ColumnInfo(name = "content") val content: String?,
     @ColumnInfo(name = "created") val created: Date
 ){
     companion object {
         fun to(repository: ArticleRepository): Article {
             return Article(
+                sourceId = repository.source.id,
                 author = repository.author,
                 title = repository.title,
                 description = repository.description,
@@ -38,5 +46,10 @@ data class Article (
         fun toList(repositories: List<ArticleRepository>?): List<Article>? {
             return repositories?.map { to(it) }
         }
+    }
+
+    fun formatDate(): String? {
+        val format = SimpleDateFormat("dd/MM/yyy hh:mm")
+        return format.format(publishedAt).toString()
     }
 }
