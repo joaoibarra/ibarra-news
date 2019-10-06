@@ -1,6 +1,5 @@
-package com.ibarra.news.article
+package com.ibarra.news.dao.article
 
-import android.os.Build
 import androidx.test.espresso.intent.Intents
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule

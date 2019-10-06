@@ -1,4 +1,4 @@
-package com.ibarra.news.article
+package com.ibarra.news.dao.article
 
 import com.ibarra.news.data.remote.domain.ArticleRepository
 import com.ibarra.news.data.remote.domain.ArticleSourceRepository

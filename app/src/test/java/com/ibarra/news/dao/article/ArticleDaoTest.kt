@@ -1,16 +1,15 @@
-package com.ibarra.news.source
+package com.ibarra.news.dao.article
 
-import android.app.Application
 import android.content.Context
 import android.os.Build
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.ibarra.news.data.db.AppDatabase
+import com.ibarra.news.data.db.dao.ArticleDao
 import com.ibarra.news.data.db.dao.SourceDao
+import com.ibarra.news.data.db.entity.Article
 import com.ibarra.news.data.db.entity.Source
-import com.ibarra.news.data.remote.domain.SourceRepository
-import com.ibarra.news.di.RoomModule
 import com.ibarra.news.di.RoomTestModule
+import com.ibarra.news.dao.source.sourceRepository
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -25,9 +24,10 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(sdk = [Build.VERSION_CODES.O_MR1])
-class SourceDaoTest: KoinTest {
+@Config(sdk = [Build.VERSION_CODES.O_MR1], manifest=Config.NONE)
+class ArticleDaoTest: KoinTest {
     private val appDatabase: AppDatabase by inject()
+    private val articleDao: ArticleDao by inject()
     private val sourceDao: SourceDao by inject()
 
     @Before
@@ -46,14 +46,17 @@ class SourceDaoTest: KoinTest {
     }
 
     @Test
-    fun testInsertSource() {
-
+    fun testInsertArticle() {
         val source = Source to sourceRepository
+        val article = Article to articleRepository
 
         sourceDao.insert(source)
+        articleDao.insert(article)
 
         val requestSource = sourceDao.findById(sourceRepository.idName)
+        val requestArticle = articleDao.findByUrl(articleRepository.url)
 
         Assert.assertEquals(source, requestSource)
+        Assert.assertEquals(article, requestArticle)
     }
 }

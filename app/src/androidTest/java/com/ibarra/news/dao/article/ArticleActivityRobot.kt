@@ -1,4 +1,4 @@
-package com.ibarra.news.article
+package com.ibarra.news.dao.article
 
 import android.content.Intent
 import androidx.test.rule.ActivityTestRule
