@@ -29,7 +29,7 @@ data class Article(
     @ColumnInfo(name = "created") val created: Date
 ){
     companion object {
-        fun to(repository: ArticleRepository): Article {
+        infix fun to(repository: ArticleRepository): Article {
             return Article(
                 sourceId = repository.source.id,
                 author = repository.author,
