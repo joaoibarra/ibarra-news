@@ -17,3 +17,7 @@ jobs:
       run: ./gradlew lint
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Start Emulator
+      uses: vgaidarji/android-github-actions/emulator@v1.0.0
+    - name: Run UI Tests 
+      run: ./gradlew connectedAndroidTest
