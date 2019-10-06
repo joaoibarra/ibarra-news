@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="colors">
+        <item name="red_400" type="color">#ef5350</item>
+        <item name="pink_400" type="color">#ec407a</item>
+        <item name="purple_600" type="color">#8e24aa</item>
+        <item name="deep_purple_400" type="color">#7e57c2</item>
+        <item name="indigo_500" type="color">#3f51b5</item>
+        <item name="blue_600" type="color">#1e88e5</item>
+        <item name="light_blue_700" type="color">#0288d1</item>
+        <item name="cyan_800" type="color">#00838f</item>
+        <item name="teal_600" type="color">#00897b</item>
+        <item name="green_600" type="color">#43a047</item>
+        <item name="light_green_800" type="color">#558b2f</item>
+        <item name="lime_900" type="color">#827717</item>
+        <item name="orange_800" type="color">#ef6c00</item>
+        <item name="deep_orange_500" type="color">#ff5722</item>
+        <item name="brown_400" type="color">#8d6e63</item>
+        <item name="grey_600" type="color">#757575</item>
+        <item name="blue_grey_500" type="color">#607d8b</item>
+    </array>
+</resources>
