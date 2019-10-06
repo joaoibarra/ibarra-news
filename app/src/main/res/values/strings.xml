@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Ibarra News</string>
+    <string name="no_more_data">No more news to load</string>
 </resources>

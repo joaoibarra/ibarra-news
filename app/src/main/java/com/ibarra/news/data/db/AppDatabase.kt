@@ -4,12 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.ibarra.news.data.db.dao.ArticleDao
 import com.ibarra.news.data.db.dao.SourceDao
+import com.ibarra.news.data.db.entity.Article
 import com.ibarra.news.data.db.entity.Source
 
-@Database(entities = arrayOf(Source::class), version = AppDatabase.DB_VERSION)
+@Database(entities = arrayOf(Source::class, Article::class), version = AppDatabase.DB_VERSION, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun getSourceDao(): SourceDao
+    abstract fun getArticleDao(): ArticleDao
 
     companion object {
         const val DB_VERSION = 1

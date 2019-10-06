@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="viewModel" type="com.ibarra.news.ui.source.SourceNewsViewModel"/>
+        <variable name="viewModel" type="com.ibarra.news.ui.article.ArticleViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.source.SourceNewsActivity">
+        tools:context=".ui.article.ArticleActivity">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_sources"
+            android:id="@+id/rv_articles"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@color/listBackground"
             app:viewModel="@{viewModel}"
-            app:sources="@{viewModel.items}"
+            app:articles="@{viewModel.items}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

@@ -4,17 +4,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="item" type="com.ibarra.news.data.db.entity.Source"/>
-        <variable name="viewModel" type="com.ibarra.news.ui.source.SourceNewsViewModel"/>
+        <import type="android.view.View"/>
+        <import type="android.text.TextUtils"/>
+        <variable name="item" type="com.ibarra.news.data.db.entity.Article"/>
+        <variable name="viewModel" type="com.ibarra.news.ui.article.ArticleViewModel"/>
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardUseCompatPadding="true"
-        android:onClick="@{() -> viewModel  != null ? viewModel.onClick(item.id) : void }"
+        android:onClick="@{() -> viewModel.onClick(item.url)}"
         android:layout_marginTop="@dimen/margin_s"
         android:layout_marginEnd="@dimen/margin_s"
+        app:cardCornerRadius="5dp"
         android:layout_marginStart="@dimen/margin_s">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,12 +26,11 @@
             <ImageView
                 android:id="@+id/iv_news_image"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:layout_margin="@dimen/margin_m"
-                app:sourceImage="@{viewModel.getRandomPlaceholder()}"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                android:layout_marginBottom="@dimen/margin_m"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:background="@tools:sample/avatars" />
@@ -42,19 +44,19 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/TextListTitle"
-                android:id="@+id/source_name"
+                android:id="@+id/article_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_m"
                 android:gravity="start|center_vertical"
-                android:text="@{item.name}"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/guideline"
+                android:text="@{item.title}"
+                app:layout_constraintTop_toBottomOf="@+id/iv_news_image"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:text="LOL"/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/source_url"
+                android:id="@+id/article_author"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_s"
@@ -62,24 +64,45 @@
                 android:layout_marginEnd="@dimen/margin_m"
                 android:layout_marginBottom="@dimen/margin_m"
                 android:gravity="start|center_vertical"
-                android:text="@{item.url}"
-                app:layout_constraintTop_toBottomOf="@+id/source_name"
-                app:layout_constraintStart_toEndOf="@+id/guideline"
+                android:text="@{item.author}"
+                android:visibility="@{TextUtils.isEmpty(item.author) ? View.GONE : View.VISIBLE}"
+                app:layout_constraintTop_toBottomOf="@+id/article_name"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:text="LOL"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/TextListDescription"
-                android:id="@+id/source_description"
+                android:id="@+id/article_description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_m"
+                android:layout_marginTop="@dimen/margin_s"
+                android:layout_marginStart="@dimen/margin_m"
+                android:layout_marginEnd="@dimen/margin_m"
+                android:layout_marginBottom="@dimen/margin_m"
                 android:gravity="start|center_vertical"
                 android:text="@{item.description}"
-                app:layout_constraintTop_toBottomOf="@+id/iv_news_image"
+                android:visibility="@{TextUtils.isEmpty(item.description) ? View.GONE : View.VISIBLE}"
+                app:layout_constraintTop_toBottomOf="@+id/article_author"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                tools:text="LOL"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextListDate"
+                android:id="@+id/article_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_s"
+                android:layout_marginStart="@dimen/margin_m"
+                android:layout_marginEnd="@dimen/margin_m"
+                android:layout_marginBottom="@dimen/margin_m"
+                android:gravity="start|center_vertical"
+                android:text="@{item.formatDate()}"
+                app:layout_constraintTop_toBottomOf="@+id/article_description"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 tools:text="LOL"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

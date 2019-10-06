@@ -8,6 +8,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -29,9 +30,9 @@ val NetworkModule = module {
             .client(get())
             .build()
     }
-    single { Cache(androidApplication().cacheDir, 10L * 1024 * 1024) }
+    single { Cache(androidContext().cacheDir, 10L * 1024 * 1024) }
 
-    single { GsonBuilder().create() }
+    single { GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create() }
 
     single{
         OkHttpClient.Builder().apply {
