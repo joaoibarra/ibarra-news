@@ -10,3 +10,4 @@ Ibarra News is a small app that uses the API [NewsApi](https://newsapi.org/). I 
 * [Glide](https://github.com/bumptech/glide): Glide is a fast and efficient open source media management and image loading framework for Android that wraps media decoding, memory and disk caching, and resource pooling into a simple and easy to use interface.
 * [Kappuccino](https://github.com/concretesolutions/kappuccino): A framework to simplify the way you do instrumentation tests in your app, using Espresso and Kotlin.
 * [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver): A scriptable web server for testing HTTP clients
+* [Github Actions](https://github.com/features/actions): GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD. Build, test, and deploy your code right from GitHub. 
