@@ -1,5 +1,5 @@
 # ibarra-news
-Ibarra News is a small app that uses the API [NewsApi](https://newsapi.org/). I used the MVVM architecture with Koin dependency injection. Also, I created tests using Espresso and Kappuccino.
+Ibarra News is a small app that uses the API Places [Api Places](https://developers.google.com/places/web-service/search?hl=pt). I used the MVVM architecture with Koin dependency injection. Also, I created tests using Espresso and Kappuccino.
 
 ### Libs and Tools ###
 
@@ -11,3 +11,4 @@ Ibarra News is a small app that uses the API [NewsApi](https://newsapi.org/). I 
 * [Kappuccino](https://github.com/concretesolutions/kappuccino): A framework to simplify the way you do instrumentation tests in your app, using Espresso and Kotlin.
 * [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver): A scriptable web server for testing HTTP clients
 * [Github Actions](https://github.com/features/actions): GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD. Build, test, and deploy your code right from GitHub. 
+* [Instrumetation Test Robots](https://academy.realm.io/posts/kau-jake-wharton-testing-robots/): robot pattern allows you to create stable, readable, and maintainable tests with the aid of Kotlin’s language features.
