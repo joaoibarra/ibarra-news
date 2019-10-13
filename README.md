@@ -1,5 +1,5 @@
 # ibarra-news
-Ibarra News is a small app that uses the Place API [NewsApi](https://newsapi.org/). I used the MVVM architecture with Koin dependency injection. Also, I created tests using Espresso and Kappuccino.
+Ibarra News is a small app that uses the [NewsApi](https://newsapi.org/). I used the MVVM architecture with Koin dependency injection. Also, I created tests using Espresso and Kappuccino.
 
 ### Libs and Tools ###
 
